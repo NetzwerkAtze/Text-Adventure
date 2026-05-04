@@ -2,7 +2,9 @@ package game;
 
 import combat.Combat;
 import entity.*;
+import story.Story;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Gameloop {
@@ -11,21 +13,35 @@ public class Gameloop {
     public int input() {
         return scanner.nextInt();
     }
+    public void playTitle() {
+        System.out.println(Story.getTitle());
+        try {
+            System.in.read();
+            scanner.nextLine();
+        } catch (Exception e) {}
+    }
     public String chooseName(){
         System.out.println("Choose your Name: ");
-        return scanner.next();
+        return scanner.nextLine();
     }
-    public PlayerClass chooseClass(){
+    public PlayerClass chooseClass() throws InputMismatchException {
         System.out.println("Choose your Class!");
         System.out.println();
         System.out.println("    (1) " + PlayerClassType.WARRIOR);
         System.out.println("    (2) " + PlayerClassType.MAGE);
         System.out.println("    (3) " + PlayerClassType.RANGER);
         System.out.println();
-        int input = input();
-        while (input > PlayerClassType.values().length || input < 1) {
-            System.out.println("No valid input.");
-            input = input();
+        int input;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                if (input <= PlayerClassType.values().length && input > 0)
+                    break;
+                System.out.println("No valid value!");
+            } else {
+                System.out.println("No valid value!");
+                scanner.next();
+            }
         }
         if (input == PlayerClassType.WARRIOR.getId()) {
             System.out.println("You are a Warrior!");
@@ -37,6 +53,9 @@ public class Gameloop {
         }
         System.out.println("You are a Ranger!");
         return new Ranger();
+    }
+    public void playIntro() {
+        System.out.println(Story.getIntro());
     }
 
     public void fight(Entity player, Entity enemy){
