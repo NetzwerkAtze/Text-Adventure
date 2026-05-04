@@ -3,10 +3,16 @@ package ability;
 import entity.Entity;
 
 public class BasicAttack implements Ability {
+    private static final String NAME = "BasicAttack";
+
     @Override
     public void use(Entity user, Entity target) {
-        System.out.println(user.getName() +  " greift " + target.getName() + " an!");
+        System.out.println(user.getName() +  " attacks " + target.getName() + " and deals " + user.getAttack() + "dmg!");
         target.takeDamage(user.getAttack());
-        System.out.println(target.getName() + " hat noch " + target.getHp() + " HP.");
+
+    }
+    @Override
+    public String getName(){
+        return NAME;
     }
 }
