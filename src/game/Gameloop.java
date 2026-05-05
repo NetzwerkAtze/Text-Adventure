@@ -2,19 +2,21 @@ package game;
 
 import combat.Combat;
 import entity.*;
+import story.Color;
 import story.Story;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Gameloop {
     Scanner scanner = new Scanner(System.in);
 
-    public int input() {
-        return scanner.nextInt();
-    }
     public void playTitle() {
-        System.out.println(Story.getTitle());
+        try {
+            Story.typeText(Files.readAllLines(Paths.get("lore/start.txt")), Color.GREEN);
+        } catch (Exception e) {}
         try {
             System.in.read();
             scanner.nextLine();
@@ -37,11 +39,9 @@ public class Gameloop {
                 input = scanner.nextInt();
                 if (input <= PlayerClassType.values().length && input > 0)
                     break;
-                System.out.println("No valid value!");
-            } else {
-                System.out.println("No valid value!");
-                scanner.next();
             }
+            System.out.println("No valid value!");
+            scanner.nextLine();
         }
         if (input == PlayerClassType.WARRIOR.getId()) {
             System.out.println("You are a Warrior!");
@@ -55,7 +55,9 @@ public class Gameloop {
         return new Ranger();
     }
     public void playIntro() {
-        System.out.println(Story.getIntro());
+        try {
+            Story.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.BLUE);
+        } catch (Exception e) {}
     }
 
     public void fight(Entity player, Entity enemy){
@@ -65,7 +67,7 @@ public class Gameloop {
             System.out.println("    (1) Attack");
             System.out.println("    (2) " + player.getAbility(1).getName());
             System.out.println("    (3) Flee");
-            int input = input();
+            int input = scanner.nextInt();;
             if (input == player.fleeIndex()) {
                 System.out.println("You have fled the fight!");
                 break;
