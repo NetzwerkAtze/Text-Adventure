@@ -2,8 +2,8 @@ package game;
 
 import combat.Combat;
 import entity.*;
-import story.Color;
-import story.Story;
+import output.Color;
+import output.Output;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ public class Gameloop {
 
     public void playTitle() {
         try {
-            Story.typeText(Files.readAllLines(Paths.get("lore/start.txt")), Color.GREEN);
+            Output.typeText(Files.readAllLines(Paths.get("lore/start.txt")), Color.GREEN);
         } catch (Exception e) {}
         try {
             System.in.read();
@@ -56,7 +56,7 @@ public class Gameloop {
     }
     public void playIntro() {
         try {
-            Story.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.BLUE);
+            Output.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.BLUE);
         } catch (Exception e) {}
     }
 
@@ -64,13 +64,15 @@ public class Gameloop {
         while (player.isAlive() && enemy.isAlive()) {
             System.out.println(player.getName() + ": " + player.getHp() + " HP       " + enemy.getName()+ ": " + enemy.getHp() + " HP");
             System.out.println("Choose your next action: ");
-            System.out.println("    (1) Attack");
-            System.out.println("    (2) " + player.getAbility(1).getName());
-            System.out.println("    (3) Flee");
+            for (int i = 0; i < player.fleeIndex()-1; i ++) {
+                int index = i + 1;
+                System.out.println("    ("+index+") "+ player.getAbility(i).getName());
+            }
+            System.out.println("    ("+player.fleeIndex()+") Flee");
             int input = scanner.nextInt();;
             if (input == player.fleeIndex()) {
                 System.out.println("You have fled the fight!");
-                break;
+                return;
             }
             Combat.fight(player, enemy, input);
         }

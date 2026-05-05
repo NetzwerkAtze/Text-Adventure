@@ -1,4 +1,4 @@
-package story;
+package output;
 
 public enum Color {
     RED,
