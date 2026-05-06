@@ -49,7 +49,7 @@ public class Gameloop {
         }
         if (input == PlayerClassType.MAGE.getId()) {
             System.out.println("You are a Mage!");
-            return new Warrior();
+            return new Mage();
         }
         System.out.println("You are a Ranger!");
         return new Ranger();
@@ -75,6 +75,10 @@ public class Gameloop {
                 return;
             }
             Combat.fight(player, enemy, input);
+            if (player.isAlive())
+                player.processEndOfTurn();
+            if (enemy.isAlive())
+                enemy.processEndOfTurn();
         }
         if (!enemy.isAlive())
             System.out.println("You have slain " + enemy.getName() + "!");

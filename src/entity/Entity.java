@@ -20,6 +20,7 @@ public class Entity {
         this.hp = hp;
         this.attack = attack;
         abilities = new LinkedList<>();
+        effects = new LinkedList<>();
     }
 
     public void setPlayerClass(PlayerClass pc) {
@@ -42,22 +43,14 @@ public class Entity {
         else
             effects.add(effect);
     }
-    public void processStartOfTurn() {
-        if (effects.isEmpty())
-            return;
-        for (int i = effects.size() -1 ; i >= 0; i--) {
-            if (effects.get(i).isExpired())
-                effects.remove(i);
-            else
-                effects.get(i).onTurnStart(this);
-        }
-    }
     public void processEndOfTurn() {
         if (effects.isEmpty())
             return;
         for (int i = effects.size() -1 ; i >= 0; i--) {
-            if (effects.get(i).isExpired())
+            if (effects.get(i).isExpired()) {
+                System.out.println(getName()+ " is no longer under the effect of " + effects.get(i).getName());
                 effects.remove(i);
+            }
             else
                 effects.get(i).onTurnEnd(this);
         }
