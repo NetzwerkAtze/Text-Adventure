@@ -2,21 +2,31 @@ package game;
 
 import combat.Combat;
 import entity.*;
-import output.Color;
-import output.Output;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import output.Output;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Gameloop {
+    private int day = 0;
     Scanner scanner = new Scanner(System.in);
 
+    public void dayCicle(Entity player) {
+        while (player.isAlive()) {
+            day++;
+            // cicle of each day
+            // wake up and get dmg if hungry
+            // acces to inventory
+            // presented with event like fight or something
+            // player chooses to engage event or disengage
+            // play even / consequences of disengaging
+            // event over sun goes down access to items again chance to eat or heal -> sleep
+            // next day
+        }
+    }
+
     public void playTitle() {
-        try {
-            Output.typeText(Files.readAllLines(Paths.get("lore/start.txt")), Color.GREEN);
-        } catch (Exception e) {}
+        Output.playTitle();
         try {
             System.in.read();
             scanner.nextLine();
@@ -27,12 +37,7 @@ public class Gameloop {
         return scanner.nextLine();
     }
     public PlayerClass chooseClass() throws InputMismatchException {
-        System.out.println("Choose your Class!");
-        System.out.println();
-        System.out.println("    (1) " + PlayerClassType.WARRIOR);
-        System.out.println("    (2) " + PlayerClassType.MAGE);
-        System.out.println("    (3) " + PlayerClassType.RANGER);
-        System.out.println();
+        Output.chooseClass();
         int input;
         while (true) {
             if (scanner.hasNextInt()) {
@@ -44,25 +49,16 @@ public class Gameloop {
             scanner.nextLine();
         }
         if (input == PlayerClassType.WARRIOR.getId()) {
-            System.out.println("You are a Warrior!");
             return new Warrior();
         }
         if (input == PlayerClassType.MAGE.getId()) {
-            System.out.println("You are a Mage!");
             return new Mage();
         }
-        System.out.println("You are a Ranger!");
         return new Ranger();
     }
-    public void playIntro() {
-        try {
-            Output.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.BLUE);
-        } catch (Exception e) {}
-    }
-
     public void fight(Entity player, Entity enemy){
         while (player.isAlive() && enemy.isAlive()) {
-            System.out.println(player.getName() + ": " + player.getHp() + " HP       " + enemy.getName()+ ": " + enemy.getHp() + " HP");
+            System.out.println(player.getPlayerClass().getName() + " " + player.getName() + ": " + player.getHp() + " HP       " + enemy.getName()+ ": " + enemy.getHp() + " HP");
             System.out.println("Choose your next action: ");
             for (int i = 0; i < player.fleeIndex()-1; i ++) {
                 int index = i + 1;
@@ -84,5 +80,8 @@ public class Gameloop {
             System.out.println("You have slain " + enemy.getName() + "!");
         else
             System.out.println("You died!");
+    }
+    public int getDay() {
+        return day;
     }
 }

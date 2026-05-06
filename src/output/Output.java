@@ -1,10 +1,37 @@
 package output;
 
+import entity.PlayerClassType;
+
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Output {
 
+    public static void playTitle() {
+        try {
+            Output.typeText(Files.readAllLines(Paths.get("lore/start.txt")), Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void playIntro() {
+        try {
+            Output.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.BLUE);
+        } catch (Exception e) {}
+    }
+    public static void chooseClass() {
+        try {
+            System.out.println("Choose your Class!");
+            Thread.sleep(500);
+            System.out.println();
+            System.out.println("    (1) " + PlayerClassType.WARRIOR);
+            Thread.sleep(500);
+            System.out.println("    (2) " + PlayerClassType.MAGE);
+            Thread.sleep(500);
+            System.out.println("    (3) " + PlayerClassType.RANGER);
+            System.out.println();
+        } catch (Exception e) {}
+    }
     public static void typeHelper(String text, Color color) throws InterruptedException {
         String chosenColor = "";
         if (color == Color.RED)

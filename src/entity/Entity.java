@@ -14,6 +14,7 @@ public class Entity {
     private List<Ability> abilities;
     private PlayerClass playerClass;
     private List<Effect> effects;
+    private boolean hungry = false;
 
     public Entity(String name, int hp, int attack) {
         this.name = name;
@@ -81,5 +82,12 @@ public class Entity {
     }
     public String getName() {
         return name;
+    }
+    public boolean isHungry() {
+        return hungry;
+    }
+    public void starving() {
+        if (isHungry())
+            takeDamage(getHp()/5);
     }
 }
