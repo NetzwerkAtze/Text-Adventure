@@ -14,9 +14,9 @@ public class Gameloop {
     public void dayCicle(Entity player) {
         while (player.isAlive()) {
             day++;
-            // cicle of each day
-            // wake up and get dmg if hungry
-            // acces to inventory
+            if (player.isHungry())
+                player.starving();
+            // acces to inventory (rasten und inventory untersuchen oder aufbrechen -> triggert event)
             // presented with event like fight or something
             // player chooses to engage event or disengage
             // play even / consequences of disengaging

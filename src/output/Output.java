@@ -9,6 +9,12 @@ import java.util.List;
 
 public class Output {
 
+    public static void starving() {
+
+    }
+    public static void morning() {
+
+    }
     public static void playTitle() {
         try {
             Output.typeText(Files.readAllLines(Paths.get("lore/start.txt")), Color.GREEN);
