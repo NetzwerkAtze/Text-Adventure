@@ -1,16 +1,16 @@
-package ability;
+package ability.effect;
 
 import entity.Entity;
 
-public class Burn implements Effect {
+public class Bleed implements Effect {
     private int duration = 3;
-    private static final String NAME = "Burn";
+    private static final String NAME = "Bleed";
 
     @Override
     public void onTurnEnd(Entity entity) {
         int dmg = 5;
         entity.takeDamage(dmg);
-        System.out.println(entity.getName() + " burns and loses " + dmg + " HP");
+        System.out.println(entity.getName() + " bleeds and loses " + dmg + " HP");
         duration--;
     }
     @Override

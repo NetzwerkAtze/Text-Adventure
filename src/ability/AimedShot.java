@@ -1,5 +1,6 @@
 package ability;
 
+import ability.effect.Bleed;
 import entity.Entity;
 
 import java.util.Random;

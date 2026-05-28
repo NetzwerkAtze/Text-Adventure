@@ -1,5 +1,6 @@
 package ability;
 
+import ability.effect.Burn;
 import entity.Entity;
 
 import java.util.Random;

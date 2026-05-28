@@ -1,5 +1,6 @@
 package output;
 
+import entity.Entity;
 import entity.PlayerClassType;
 
 import java.io.IOException;
@@ -9,11 +10,15 @@ import java.util.List;
 
 public class Output {
 
-    public static void starving() {
-
+    public static void starving( int dmg) {
+        try {
+        typeHelper("You wake with a hollow ache in your stomach as hunger gnaws at your strength. Starvation deals " + dmg + " damage.", Color.GREEN);
+        } catch (Exception e) {}
     }
-    public static void morning() {
-
+    public static void notStarving() {
+        try {
+            typeHelper("You wake feeling rested, the first light of dawn creeping across the room.", Color.GREEN);
+        } catch (Exception e) {}
     }
     public static void playTitle() {
         try {

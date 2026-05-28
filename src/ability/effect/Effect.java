@@ -1,4 +1,4 @@
-package ability;
+package ability.effect;
 import entity.Entity;
 
 public interface Effect {

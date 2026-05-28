@@ -14,8 +14,8 @@ public class Gameloop {
     public void dayCicle(Entity player) {
         while (player.isAlive()) {
             day++;
-            if (player.isHungry())
-                player.starving();
+            checkHunger(player);
+
             // acces to inventory (rasten und inventory untersuchen oder aufbrechen -> triggert event)
             // presented with event like fight or something
             // player chooses to engage event or disengage
@@ -55,6 +55,13 @@ public class Gameloop {
             return new Mage();
         }
         return new Ranger();
+    }
+    public void checkHunger(Entity player) {
+        int dmg = player.starving();
+        if (dmg > 0)
+            Output.starving(dmg);
+        else
+            Output.notStarving();
     }
     public void fight(Entity player, Entity enemy){
         while (player.isAlive() && enemy.isAlive()) {

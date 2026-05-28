@@ -1,8 +1,11 @@
 package entity;
 
 import ability.Ability;
-import ability.Effect;
+import ability.effect.Effect;
+import items.Food;
+import items.Item;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +17,11 @@ public class Entity {
     private List<Ability> abilities;
     private PlayerClass playerClass;
     private List<Effect> effects;
-    private boolean hungry = false;
+    private List<Item> inventory;
+    private int inventorySize;
+    private int maxInventorySize = 8;
+    private int hunger;
+    private int maxHunger = 5;
 
     public Entity(String name, int hp, int attack) {
         this.name = name;
@@ -22,6 +29,9 @@ public class Entity {
         this.attack = attack;
         abilities = new LinkedList<>();
         effects = new LinkedList<>();
+        inventory = new ArrayList<>();
+        inventorySize = maxInventorySize;
+        hunger = maxHunger;
     }
 
     public void setPlayerClass(PlayerClass pc) {
@@ -84,10 +94,31 @@ public class Entity {
         return name;
     }
     public boolean isHungry() {
-        return hungry;
+        return hunger == 0;
     }
-    public void starving() {
-        if (isHungry())
-            takeDamage(getHp()/5);
+    public int starving() {
+        hunger = Math.max(hunger - 2, 0);
+        if (isHungry()) {
+            int dmg = getHp() / 5;
+            takeDamage(dmg);
+            return dmg;
+        }
+        return 0;
+    }
+    public void addItem(Item item) {
+        if (inventory.size() < inventorySize) {
+            inventory.add(item);
+            System.out.println(item.getName() + " added to your inventory.");
+        }
+        else
+            System.out.println("Inventory full");
+    }
+    public int getInventorySize() {
+        return inventorySize;
+    }
+    public void eat(Food food) {
+        hunger = Math.min(hunger + food.getHungerValue(), maxHunger);
+    }
+    public void heal(int value) { // add later
     }
 }
