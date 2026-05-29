@@ -9,8 +9,8 @@ public class Main {
         game.playTitle();
         Entity player = new Entity(game.chooseName(), 100, 10);
         Entity enemy = new Entity("Kobold", 200, 6);
-        enemy.setPlayerClass(new Warrior());
-        player.setPlayerClass(game.chooseClass());
+        enemy.setCharacterClass(new Warrior());
+        player.setCharacterClass(game.chooseClass());
         //game.playIntro();
         game.fight(player, enemy);
     }

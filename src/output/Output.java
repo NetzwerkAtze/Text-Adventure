@@ -1,7 +1,6 @@
 package output;
 
-import entity.Entity;
-import entity.PlayerClassType;
+import entity.CharacterClassType;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -35,11 +34,11 @@ public class Output {
             System.out.println("Choose your Class!");
             Thread.sleep(500);
             System.out.println();
-            System.out.println("    (1) " + PlayerClassType.WARRIOR);
+            System.out.println("    (1) " + CharacterClassType.WARRIOR);
             Thread.sleep(500);
-            System.out.println("    (2) " + PlayerClassType.MAGE);
+            System.out.println("    (2) " + CharacterClassType.MAGE);
             Thread.sleep(500);
-            System.out.println("    (3) " + PlayerClassType.RANGER);
+            System.out.println("    (3) " + CharacterClassType.RANGER);
             System.out.println();
         } catch (Exception e) {}
     }

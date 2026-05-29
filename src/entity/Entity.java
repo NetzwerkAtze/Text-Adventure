@@ -2,7 +2,6 @@ package entity;
 
 import ability.Ability;
 import ability.effect.Effect;
-import items.Food;
 import items.Item;
 
 import java.util.ArrayList;
@@ -11,17 +10,13 @@ import java.util.List;
 
 public class Entity {
 
-    private String name;
-    private int hp;
-    private int attack;
-    private List<Ability> abilities;
-    private PlayerClass playerClass;
-    private List<Effect> effects;
-    private List<Item> inventory;
-    private int inventorySize;
-    private int maxInventorySize = 8;
-    private int hunger;
-    private int maxHunger = 5;
+    protected String name;
+    protected CharacterClass characterClass;
+    protected int hp;
+    protected int attack;
+    protected List<Ability> abilities;
+    protected List<Effect> effects;
+    protected List<Item> inventory;
 
     public Entity(String name, int hp, int attack) {
         this.name = name;
@@ -30,23 +25,20 @@ public class Entity {
         abilities = new LinkedList<>();
         effects = new LinkedList<>();
         inventory = new ArrayList<>();
-        inventorySize = maxInventorySize;
-        hunger = maxHunger;
-    }
-
-    public void setPlayerClass(PlayerClass pc) {
-        abilities.clear();
-        playerClass = pc;
-        pc.applyTo(this);
-    }
-    public PlayerClass getPlayerClass() {
-        return playerClass;
     }
     public boolean isAlive(){
         return hp > 0;
     }
     public void takeDamage(int dmg) {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
+    }
+    public void setCharacterClass(CharacterClass pc) {
+        abilities.clear();
+        characterClass = pc;
+        pc.applyTo(this);
+    }
+    public CharacterClass getCharacterClass() {
+        return characterClass;
     }
     public void addEffect(Effect effect) {
         if (effect == null)
@@ -93,31 +85,8 @@ public class Entity {
     public String getName() {
         return name;
     }
-    public boolean isHungry() {
-        return hunger == 0;
-    }
-    public int starving() {
-        hunger = Math.max(hunger - 2, 0);
-        if (isHungry()) {
-            int dmg = getHp() / 5;
-            takeDamage(dmg);
-            return dmg;
-        }
-        return 0;
-    }
     public void addItem(Item item) {
-        if (inventory.size() < inventorySize) {
-            inventory.add(item);
-            System.out.println(item.getName() + " added to your inventory.");
-        }
-        else
-            System.out.println("Inventory full");
-    }
-    public int getInventorySize() {
-        return inventorySize;
-    }
-    public void eat(Food food) {
-        hunger = Math.min(hunger + food.getHungerValue(), maxHunger);
+        inventory.add(item);
     }
     public void heal(int value) { // add later
     }

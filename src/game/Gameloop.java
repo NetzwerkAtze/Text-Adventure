@@ -11,7 +11,7 @@ public class Gameloop {
     private int day = 0;
     Scanner scanner = new Scanner(System.in);
 
-    public void dayCicle(Entity player) {
+    public void dayCicle(Player player) {
         while (player.isAlive()) {
             day++;
             checkHunger(player);
@@ -36,27 +36,27 @@ public class Gameloop {
         System.out.println("Choose your Name: ");
         return scanner.nextLine();
     }
-    public PlayerClass chooseClass() throws InputMismatchException {
+    public CharacterClass chooseClass() throws InputMismatchException {
         Output.chooseClass();
         int input;
         while (true) {
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
-                if (input <= PlayerClassType.values().length && input > 0)
+                if (input <= CharacterClassType.values().length && input > 0)
                     break;
             }
             System.out.println("No valid value!");
             scanner.nextLine();
         }
-        if (input == PlayerClassType.WARRIOR.getId()) {
+        if (input == CharacterClassType.WARRIOR.getId()) {
             return new Warrior();
         }
-        if (input == PlayerClassType.MAGE.getId()) {
+        if (input == CharacterClassType.MAGE.getId()) {
             return new Mage();
         }
         return new Ranger();
     }
-    public void checkHunger(Entity player) {
+    public void checkHunger(Player player) {
         int dmg = player.starving();
         if (dmg > 0)
             Output.starving(dmg);
@@ -65,7 +65,7 @@ public class Gameloop {
     }
     public void fight(Entity player, Entity enemy){
         while (player.isAlive() && enemy.isAlive()) {
-            System.out.println(player.getPlayerClass().getName() + " " + player.getName() + ": " + player.getHp() + " HP       " + enemy.getName()+ ": " + enemy.getHp() + " HP");
+            System.out.println(player.getCharacterClass().getName() + " " + player.getName() + ": " + player.getHp() + " HP       " + enemy.getName()+ ": " + enemy.getHp() + " HP");
             System.out.println("Choose your next action: ");
             for (int i = 0; i < player.fleeIndex()-1; i ++) {
                 int index = i + 1;

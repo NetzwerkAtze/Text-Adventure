@@ -3,7 +3,7 @@ package entity;
 import ability.AimedShot;
 import ability.BasicAttack;
 
-public class Ranger implements PlayerClass{
+public class Ranger implements CharacterClass {
     public String name = "Ranger";
 
     @Override

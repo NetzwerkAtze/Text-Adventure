@@ -2,7 +2,7 @@ package items;
 
 import entity.Entity;
 
-public class Food {
+public class Food extends Item {
     private String name = "food";
     private int hungerValue = 2;
 

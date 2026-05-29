@@ -3,7 +3,7 @@ package entity;
 import ability.BasicAttack;
 import ability.HeavyStrike;
 
-public class Warrior implements PlayerClass {
+public class Warrior implements CharacterClass {
     public String name = "Mage";
 
     @Override

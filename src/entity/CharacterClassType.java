@@ -1,13 +1,13 @@
 package entity;
 
-public enum PlayerClassType {
+public enum CharacterClassType {
     WARRIOR(1),
     MAGE(2),
     RANGER(3);
 
     private final int id;
 
-    PlayerClassType(int id) {
+    CharacterClassType(int id) {
         this.id = id;
     }
     public int getId() {
