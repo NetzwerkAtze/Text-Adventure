@@ -2,9 +2,9 @@ package entity;
 
 import ability.Ability;
 import ability.effect.Effect;
+import items.Inventory;
 import items.Item;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class Entity {
     protected int attack;
     protected List<Ability> abilities;
     protected List<Effect> effects;
-    protected List<Item> inventory;
+    protected Inventory inventory;
 
     public Entity(String name, int hp, int attack) {
         this.name = name;
@@ -24,7 +24,7 @@ public class Entity {
         this.attack = attack;
         abilities = new LinkedList<>();
         effects = new LinkedList<>();
-        inventory = new ArrayList<>();
+        inventory = new Inventory();
     }
     public boolean isAlive(){
         return hp > 0;
@@ -84,9 +84,6 @@ public class Entity {
     }
     public String getName() {
         return name;
-    }
-    public void addItem(Item item) {
-        inventory.add(item);
     }
     public void heal(int value) { // add later
     }
