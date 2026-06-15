@@ -1,15 +1,26 @@
 package items;
 
-import entity.Entity;
+import entity.Player;
 
 public class Food extends Item {
     private String name = "food";
-    private int hungerValue = 2;
+    private int foodValue = 2;
 
     public String getName() {
         return name;
     }
-    public int getHungerValue() {
-        return hungerValue;
+    public int getFoodValue() {
+        return foodValue;
+    }
+    public boolean use(Player player) {
+        if (player.isHungry()) {
+            player.setHunger(foodValue);
+            System.out.println("You eat " + name + " and restore to " + player.getHunger() + " hunger.");
+            return true;
+        }
+        else {
+            System.out.println("You are not hungry.");
+            return false;
+        }
     }
 }

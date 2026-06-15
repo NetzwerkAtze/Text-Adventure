@@ -9,6 +9,14 @@ import java.util.List;
 
 public class Output {
 
+    public static void accessInventory() {
+        try {
+        typeHelper("Do you want to access your inventory?", Color.GREEN);
+            Thread.sleep(500);
+            System.out.println("    (1) Yes");
+            System.out.println("    (2) No");
+        } catch (Exception e) {}
+    }
     public static void starving( int dmg) {
         try {
         typeHelper("You wake with a hollow ache in your stomach as hunger gnaws at your strength. Starvation deals " + dmg + " damage.", Color.GREEN);
@@ -31,7 +39,7 @@ public class Output {
     }
     public static void chooseClass() {
         try {
-            System.out.println("Choose your Class!");
+            System.out.println("Choose your Class: ");
             Thread.sleep(500);
             System.out.println();
             System.out.println("    (1) " + CharacterClassType.WARRIOR);

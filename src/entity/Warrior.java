@@ -4,7 +4,7 @@ import ability.BasicAttack;
 import ability.HeavyStrike;
 
 public class Warrior implements CharacterClass {
-    public String name = "Mage";
+    public String name = "Warrior";
 
     @Override
     public void applyTo(Entity entity) {

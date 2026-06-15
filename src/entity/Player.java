@@ -11,19 +11,23 @@ public class Player extends Entity {
         hunger = maxHunger;
         inventory.add(new Food()); // starting Supply
     }
-    public boolean isHungry() {
+    public boolean isHungry() { return hunger < maxHunger;}
+    public boolean isStarving() {
         return hunger == 0;
     }
     public int starving() {
         hunger = Math.max(hunger - 2, 0);
-        if (isHungry()) {
+        if (isStarving()) {
             int dmg = getHp() / 5;
             takeDamage(dmg);
             return dmg;
         }
         return 0;
     }
-    public void eat(Food food) {
-        hunger = Math.min(hunger + food.getHungerValue(), maxHunger);
+    public int getHunger() {
+        return hunger;
+    }
+    public void setHunger(int foodValue) {
+        hunger = Math.min(hunger + foodValue, maxHunger);
     }
 }

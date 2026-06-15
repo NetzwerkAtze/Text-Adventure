@@ -1,6 +1,5 @@
 package day;
 
-import entity.Entity;
 import entity.Player;
 
 public class day {
@@ -13,7 +12,7 @@ public class day {
         return day;
     }
     public void starving(Player player) {
-        if (player.isHungry())
+        if (player.isStarving())
             player.takeDamage(player.getHp()/5);
     }
 }

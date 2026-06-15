@@ -85,6 +85,9 @@ public class Entity {
     public String getName() {
         return name;
     }
+    public Inventory getInventory() {
+        return inventory;
+    }
     public void heal(int value) { // add later
     }
 }

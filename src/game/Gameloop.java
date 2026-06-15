@@ -15,7 +15,7 @@ public class Gameloop {
         while (player.isAlive()) {
             day++;
             checkHunger(player);
-
+            accessInventory(player);
             // acces to inventory (rasten und inventory untersuchen oder aufbrechen -> triggert event)
             // presented with event like fight or something
             // player chooses to engage event or disengage
@@ -87,6 +87,44 @@ public class Gameloop {
             System.out.println("You have slain " + enemy.getName() + "!");
         else
             System.out.println("You died!");
+    }
+    public void accessInventory(Player player) {
+        Output.accessInventory();
+        int input;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                if (input <= 2 && input > 0)
+                    break;
+            }
+            System.out.println("No valid value!");
+            scanner.nextLine();
+        }
+        if (input == 1) {
+            player.getInventory().showItems();
+            chooseItem(player);
+        }
+        else
+            return;
+    }
+    public void chooseItem(Player player) {
+        System.out.println("Please enter Number of item to use");
+        System.out.println("Enter " + (player.getInventory().size() + 1) + " to quit.");
+        int input;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                if (input <= player.getInventory().size() + 1 && input > 0)
+                    break;
+            }
+            System.out.println("No valid value!");
+            scanner.nextLine();
+        }
+        if (input <= player.getInventory().size() + 1) {
+            player.getInventory().get(input - 1).use(player);
+        }
+        else
+            return;
     }
     public int getDay() {
         return day;

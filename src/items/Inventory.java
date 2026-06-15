@@ -11,11 +11,16 @@ public class Inventory extends ArrayList<Item> {
         inventorySize = startingSize;
     }
     public void showItems(){
+        System.out.println("You have " + size() + "/" + getInventorySize() + " inventory space.");
         if (this.isEmpty())
             System.out.println("You have no items.");
-        Iterator<Item> it = this.iterator();
-        while (it.hasNext()) {
-            it.next().getName();
+        else {
+            Iterator<Item> it = this.iterator();
+            int i = 1;
+            while (it.hasNext()) {
+                System.out.println("Item " + i + ": " + it.next().getName());
+                i++;
+            }
         }
     }
     public void addItem(Item item) {
