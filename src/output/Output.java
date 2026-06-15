@@ -1,6 +1,7 @@
 package output;
 
 import entity.CharacterClassType;
+import entity.Player;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,12 +10,37 @@ import java.util.List;
 
 public class Output {
 
+    public static void displayItem(int number, String name) {
+        try {
+            typeHelper("Item " + number + " " + name, Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void chooseItem(Player player) {
+        try {
+            typeHelper("Please enter Number of item to use", Color.GREEN);
+            typeHelper("Enter " + (player.getInventory().size() + 1) + " to quit.", Color.GREEN);
+        } catch (Exception e) {}
+    }
     public static void accessInventory() {
         try {
         typeHelper("Do you want to access your inventory?", Color.GREEN);
-            Thread.sleep(500);
-            System.out.println("    (1) Yes");
-            System.out.println("    (2) No");
+
+        } catch (Exception e) {}
+    }
+    public static void chooseName(){
+        try {
+            typeHelper("Choose your Name: ", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void noValidValue(){
+        try {
+            typeHelper("No valid value!", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void yesNo() {
+        try {
+            typeHelper("(1) Yes", Color.GREEN);
+            typeHelper("(2) No", Color.GREEN);
         } catch (Exception e) {}
     }
     public static void starving( int dmg) {
@@ -73,6 +99,7 @@ public class Output {
             }
         }
         System.out.println("\u001B[0m");
+        Thread.sleep(500);
     }
     public static void typeText(List<String> lines, Color color) throws IOException, InterruptedException {
         for (String line : lines) {

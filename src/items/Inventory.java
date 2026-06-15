@@ -1,5 +1,7 @@
 package items;
 
+import output.Output;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,7 +20,7 @@ public class Inventory extends ArrayList<Item> {
             Iterator<Item> it = this.iterator();
             int i = 1;
             while (it.hasNext()) {
-                System.out.println("Item " + i + ": " + it.next().getName());
+                Output.displayItem(i, it.next().getName());
                 i++;
             }
         }

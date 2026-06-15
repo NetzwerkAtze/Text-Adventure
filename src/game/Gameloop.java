@@ -33,7 +33,7 @@ public class Gameloop {
         } catch (Exception e) {}
     }
     public String chooseName(){
-        System.out.println("Choose your Name: ");
+        Output.chooseName();
         return scanner.nextLine();
     }
     public CharacterClass chooseClass() throws InputMismatchException {
@@ -45,7 +45,7 @@ public class Gameloop {
                 if (input <= CharacterClassType.values().length && input > 0)
                     break;
             }
-            System.out.println("No valid value!");
+            Output.noValidValue();
             scanner.nextLine();
         }
         if (input == CharacterClassType.WARRIOR.getId()) {
@@ -90,6 +90,7 @@ public class Gameloop {
     }
     public void accessInventory(Player player) {
         Output.accessInventory();
+        Output.yesNo();
         int input;
         while (true) {
             if (scanner.hasNextInt()) {
@@ -97,7 +98,7 @@ public class Gameloop {
                 if (input <= 2 && input > 0)
                     break;
             }
-            System.out.println("No valid value!");
+            Output.noValidValue();
             scanner.nextLine();
         }
         if (input == 1) {
@@ -108,8 +109,7 @@ public class Gameloop {
             return;
     }
     public void chooseItem(Player player) {
-        System.out.println("Please enter Number of item to use");
-        System.out.println("Enter " + (player.getInventory().size() + 1) + " to quit.");
+        Output.chooseItem(player);
         int input;
         while (true) {
             if (scanner.hasNextInt()) {
@@ -117,7 +117,7 @@ public class Gameloop {
                 if (input <= player.getInventory().size() + 1 && input > 0)
                     break;
             }
-            System.out.println("No valid value!");
+            Output.noValidValue();
             scanner.nextLine();
         }
         if (input <= player.getInventory().size() + 1) {
