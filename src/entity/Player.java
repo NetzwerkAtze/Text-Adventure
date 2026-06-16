@@ -6,8 +6,8 @@ public class Player extends Entity {
     protected int hunger;
     protected int maxHunger = 5;
 
-    public Player(String name, int hp, int attack) {
-        super(name, hp, attack);
+    public Player(String name) {
+        super(name, 100, 10);
         hunger = maxHunger;
         inventory.add(new Food()); // starting Supply
     }
