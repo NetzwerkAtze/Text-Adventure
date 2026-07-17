@@ -6,6 +6,11 @@ public class Food extends Item {
     private String name = "food";
     private int foodValue = 2;
 
+    public Food () {}
+    public Food (String name, int foodValue) {
+        this.name = name;
+        this.foodValue = foodValue;
+    }
     public String getName() {
         return name;
     }

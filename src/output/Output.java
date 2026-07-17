@@ -9,6 +9,54 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Output {
+    public static final int YES = 1;
+    public static final int NO = 2;
+    public static void receiveItem(String name) {
+        try {
+            typeHelper("You receive  " + name + " and add it to your inventory.", Color.GREEN);
+        } catch (Exception e) {}
+
+    }
+    public static void slain(String name) {
+        try {
+            typeHelper("You have slain " + name + "!", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void youDied() {
+        try {
+            typeHelper("You died!", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void youFled() {
+        try {
+            typeHelper("You have fled the fight!", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void healthBars(String className, String playerName, int playerHP, String enemyName, int enemyHP) {
+        try {
+            typeHelper(className +" " + playerName + ": " + playerHP + " HP     " + enemyName + ": " + enemyHP +  " HP", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void chooseAction() {
+        try {
+            typeHelper("Choose your next action: ", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void displayAbility(int number, String name) {
+        try {
+            typeHelper("    ("+number+") "+ name, Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void wolfAttack() {
+        try {
+            typeHelper("You hear howling in the distance, growing louder with every passing moment. A pack of wolves is closing in on your position. Will you stand your ground and fight, or hide and hope they pass you by?", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void fleeWolfAttack(int dmg) {
+        try {
+            typeHelper("You try to hide and jump into a bramble bush. The thorns scratch you, and you take " + dmg + " damage.", Color.GREEN);
+        } catch (Exception e) {}
+    }
 
     public static void displayItem(int number, String name) {
         try {

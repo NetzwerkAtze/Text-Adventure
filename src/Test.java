@@ -11,6 +11,5 @@ public class Test {
         Entity enemy = new Entity("Kobold", 200, 6);
         enemy.setCharacterClass(new Warrior());
         player.setCharacterClass(new Warrior());
-        Combat.fight(player, enemy);
     }
 }

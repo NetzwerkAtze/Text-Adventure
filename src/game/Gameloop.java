@@ -13,7 +13,7 @@ public class Gameloop {
     Scanner scanner = new Scanner(System.in);
 
     public void loop(Player player) {
-        while (player.isAlive() && Day.getDay() < 10) {
+        while (player.isAlive() && Day.getDay() < 5) {
             Day day = new Day();
         }
         if (!player.isAlive())

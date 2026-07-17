@@ -1,38 +1,59 @@
 package combat;
 
 import entity.Entity;
+import output.Output;
 
 import java.util.Scanner;
 
 public class Combat {
+    public static final int RESULT_WIN = 1;
+    public static final int RESULT_LOSS = 2;
+    public static final int RESULT_FLED = 0;
     public static void fightHelper(Entity player, Entity enemy, int action){
             player.useAbility(action-1, enemy);
             enemy.useAbility(0, player);
     }
-    public static void fight(Entity player, Entity enemy){
-        Scanner scanner = new Scanner(System.in);
+    /*
+
+     */
+    public static int fight(Entity player, Entity enemy, Scanner scanner){
         while (player.isAlive() && enemy.isAlive()) {
-            System.out.println(player.getCharacterClass().getName() + " " + player.getName() + ": " + player.getHp() + " HP       " + enemy.getName()+ ": " + enemy.getHp() + " HP");
-            System.out.println("Choose your next action: ");
+            Output.healthBars(player.getCharacterClass().getName(), player.getName(), player.getHp(), enemy.getName(), enemy.getHp());
+            Output.chooseAction();
             for (int i = 0; i < player.fleeIndex()-1; i ++) {
                 int index = i + 1;
-                System.out.println("    ("+index+") "+ player.getAbility(i).getName());
+                Output.displayAbility(index, player.getAbility(i).getName());
             }
-            System.out.println("    ("+player.fleeIndex()+") Flee");
-            int input = scanner.nextInt();;
-            if (input == player.fleeIndex()) {
-                System.out.println("You have fled the fight!");
-                return;
+            Output.displayAbility(player.fleeIndex(),"Flee");
+            int input;
+            while (true) {
+                if (scanner.hasNextInt()) {
+                    input = scanner.nextInt();
+                    if (input == player.fleeIndex()) {
+                        Output.youFled();
+                        return RESULT_FLED;
+                    }
+                    if (input > player.getAbilities().size()) {
+                        Output.noValidValue();
+                    }
+                    else {
+                        fightHelper(player, enemy, input);
+                        if (player.isAlive())
+                            player.processEndOfTurn();
+                        if (enemy.isAlive())
+                            enemy.processEndOfTurn();
+                        break;
+                    }
+                }
             }
-            fightHelper(player, enemy, input);
-            if (player.isAlive())
-                player.processEndOfTurn();
-            if (enemy.isAlive())
-                enemy.processEndOfTurn();
         }
-        if (!enemy.isAlive())
-            System.out.println("You have slain " + enemy.getName() + "!");
-        else
-            System.out.println("You died!");
+        if (!enemy.isAlive()) {
+            Output.slain(enemy.getName());
+            return RESULT_WIN;
+        }
+        else {
+            Output.youDied();
+            return RESULT_LOSS;
+        }
     }
 }

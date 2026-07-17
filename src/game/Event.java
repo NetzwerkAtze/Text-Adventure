@@ -1,11 +1,10 @@
 package game;
 
-public class Event {
-        int day;
-    public Event (int day) {
-        this.day = day;
-    }
-    public void start() {
-        
-    }
+import entity.Player;
+
+import java.util.Scanner;
+
+public abstract class Event {
+
+    public abstract void trigger(Player player, Scanner scanner);
 }

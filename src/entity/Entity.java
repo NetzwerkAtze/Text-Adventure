@@ -37,6 +37,10 @@ public class Entity {
         characterClass = pc;
         pc.applyTo(this);
     }
+
+    public List<Ability> getAbilities() {
+        return abilities;
+    }
     public CharacterClass getCharacterClass() {
         return characterClass;
     }
