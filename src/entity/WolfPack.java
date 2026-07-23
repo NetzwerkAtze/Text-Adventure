@@ -11,5 +11,4 @@ public class WolfPack extends Entity{
         super(wolfName, baseHP, baseAttack);
         addAbility(new Bite());
     }
-
 }

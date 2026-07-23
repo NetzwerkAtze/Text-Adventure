@@ -47,10 +47,30 @@ public class Output {
             typeHelper("    ("+number+") "+ name, Color.GREEN);
         } catch (Exception e) {}
     }
+    public static void injuredTrader() {
+        try {
+            typeHelper("You come across a wounded merchant lying by the side of the road. Blood seeps from a deep bite wound on his arm. He looks at you with pleading eyes, barely able to speak. Will you help him ?",Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void werewolfTransform() {
+        try {
+            typeHelper("You help the wounded merchant through the forest. With every step, he grows weaker until he suddenly collapses. Moments later, his body begins to change. Bones crack, fur grows, and a werewolf rises before you. It attacks!", Color.GREEN);
+        } catch (Exception e) {}
+    }
     public static void wolfAttack() {
         try {
             typeHelper("You hear howling in the distance, growing louder with every passing moment. A pack of wolves is closing in on your position. Will you stand your ground and fight, or hide and hope they pass you by?", Color.GREEN);
         } catch (Exception e) {}
+    }
+    public static void fleeWerewolf(int dmg) {
+        try {
+            typeHelper("You turn and run, but the werewolf is too fast. Its claws rake across your back before you manage to escape, leaving a deep wound. and you take " + dmg + " damage.", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void findPistol() {
+        try {
+            typeHelper("As the werewolf's body lies motionless, you search it. Hidden beneath the torn clothing, you discover a revolver with one bullet left.", Color.GREEN);
+        } catch (InterruptedException e) {}
     }
     public static void fleeWolfAttack(int dmg) {
         try {

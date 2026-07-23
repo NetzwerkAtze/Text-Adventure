@@ -1,9 +1,8 @@
 package ability;
 
-import ability.effect.Bleed;
 import entity.Entity;
 
-import java.util.Random;
+
 
 public class Bite implements Ability {
     private static final double ATTACK_MODIFIER = 1;
@@ -13,11 +12,6 @@ public class Bite implements Ability {
     public void use(Entity user, Entity target) {
         System.out.println(user.getName() + " bit you and deals " + (int) (user.getAttack() * ATTACK_MODIFIER) + "dmg!");
         target.takeDamage((int) (user.getAttack() * ATTACK_MODIFIER));
-        Random rng = new Random();
-        if (rng.nextInt(4) == 0) {
-            System.out.println(target.getName() + " is bleeding!");
-            target.addEffect(new Bleed());
-        }
     }
     @Override
     public String getName() {
