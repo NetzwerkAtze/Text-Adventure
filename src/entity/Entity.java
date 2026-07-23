@@ -92,6 +92,7 @@ public class Entity {
     public Inventory getInventory() {
         return inventory;
     }
-    public void heal(int value) { // add later
+    public void heal(int value) {
+        hp += value;
     }
 }

@@ -17,7 +17,7 @@ public class InjuredTrader extends Event {
         while (true) {
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
-                if (input == Output.YES) {
+                if (input == Output.OPTION_ONE) {
                     //Kampf
                     Output.werewolfTransform();
                     Werewolf werewolf = new Werewolf();
@@ -28,7 +28,7 @@ public class InjuredTrader extends Event {
                         player.addAbility(new PistolShot(ammunition));
                     }
                     break;
-                }else if (input == Output.NO) {
+                }else if (input == Output.OPTION_TWO) {
                     //flucht
                     int dmg;
                     if (player.getHp() > 20)

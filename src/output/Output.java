@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Output {
-    public static final int YES = 1;
-    public static final int NO = 2;
+    public static final int OPTION_ONE = 1;
+    public static final int OPTION_TWO = 2;
     public static void receiveItem(String name) {
         try {
             typeHelper("You receive  " + name + " and add it to your inventory.", Color.GREEN);
@@ -47,6 +47,16 @@ public class Output {
             typeHelper("    ("+number+") "+ name, Color.GREEN);
         } catch (Exception e) {}
     }
+    public static void payTollNoItems(int dmg) {
+        try {
+            typeHelper("You have nothing to pay the toll with. The bandits beat you badly before leaving you behind. You take " + dmg + "damage.", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void payToll(String itemName) {
+        try {
+            typeHelper("You pay the toll with your " + itemName + ". The bandits let you continue your journey without trouble. ", Color.GREEN);
+        } catch (Exception e) {}
+    }
     public static void injuredTrader() {
         try {
             typeHelper("You come across a wounded merchant lying by the side of the road. Blood seeps from a deep bite wound on his arm. He looks at you with pleading eyes, barely able to speak. Will you help him ?",Color.GREEN);
@@ -67,17 +77,31 @@ public class Output {
             typeHelper("You turn and run, but the werewolf is too fast. Its claws rake across your back before you manage to escape, leaving a deep wound. and you take " + dmg + " damage.", Color.GREEN);
         } catch (Exception e) {}
     }
+    public static void banditsArrive() {
+        try{
+            typeHelper("As you follow the narrow forest path, several armed bandits step out from the trees, blocking your way. Their leader grins as they surround you. They demand a toll. Do you pay or do you fight?", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void banditAttack() {
+        try {
+            typeHelper("The bandit leader attacks you!", Color.GREEN);
+        } catch (Exception e) {}
+    }
     public static void findPistol() {
         try {
             typeHelper("As the werewolf's body lies motionless, you search it. Hidden beneath the torn clothing, you discover a revolver with one bullet left.", Color.GREEN);
-        } catch (InterruptedException e) {}
+        } catch (Exception e) {}
     }
     public static void fleeWolfAttack(int dmg) {
         try {
             typeHelper("You try to hide and jump into a bramble bush. The thorns scratch you, and you take " + dmg + " damage.", Color.GREEN);
         } catch (Exception e) {}
     }
-
+    public static void banditWin(int amount) {
+        try{
+            typeHelper("The bandits retreat, fleeing into the forest. In their haste, one of them drops a powerful-looking amulet. You put it on and feel a surge of vitality flow through your body. You increase your current health by " + amount +".", Color.GREEN);
+        } catch (Exception e) {}
+    }
     public static void displayItem(int number, String name) {
         try {
             typeHelper("Item " + number + " " + name, Color.GREEN);
@@ -109,6 +133,12 @@ public class Output {
         try {
             typeHelper("(1) Yes", Color.GREEN);
             typeHelper("(2) No", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void chooseOptions(String optionOne, String optionTwo) {
+        try {
+            typeHelper("(1) " + optionOne, Color.GREEN);
+            typeHelper("(2) " + optionTwo, Color.GREEN);
         } catch (Exception e) {}
     }
     public static void starving( int dmg) {
