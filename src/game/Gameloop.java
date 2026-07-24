@@ -11,8 +11,8 @@ public class Gameloop {
     Scanner scanner = new Scanner(System.in);
 
     public void loop(Player player) {
-        while (player.isAlive() && Day.getDay() <= Day.earlyEvents.size() + Day.lateEvents.size()) {
-            Day day = new Day();
+        while (player.isAlive() && Day.getDay() < Day.earlyEvents.size() + Day.lateEvents.size()) {
+            Day day = new Day(scanner);
             day.cicle(player);
         }
         if (!player.isAlive())

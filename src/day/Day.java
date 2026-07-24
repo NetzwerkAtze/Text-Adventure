@@ -11,10 +11,11 @@ public class Day {
     public static int day = 0;
     public static List<Event> earlyEvents = List.of(new WolfAttack());
     public static List<Event> lateEvents = List.of(new Bandits(), new InjuredTrader(), new AbandonedCamp());
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner;
 
-    public Day() {
+    public Day(Scanner scanner) {
         day = day + 1;
+        this.scanner = scanner;
     }
 
     public void cicle(Player player) {
@@ -29,7 +30,6 @@ public class Day {
         Output.dayOver();
         accessInventory(player);
         Output.sleep();
-        day ++;
     }
     public static int getDay() {
         return day;
