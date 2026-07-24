@@ -17,6 +17,11 @@ public class Output {
         } catch (Exception e) {}
 
     }
+    public static void help(String text) {
+        try {
+            typeHelper(text, Color.GREEN);
+        } catch (Exception e) {}
+    } // helper method for basic text output
     public static void slain(String name) {
         try {
             typeHelper("You have slain " + name + "!", Color.GREEN);
@@ -77,10 +82,22 @@ public class Output {
             typeHelper("After an intense battle, the skeletal mage lets out one final scream before its body crumbles into dust. You open the chest. Inside you find an Enchanted Ring and some old cured meat in the campsite. You increase your attack by " + dmg + " and put the old cured meat to your bag.", Color.GREEN);
         } catch (Exception e) {}
     }
+    public static void dayOver() {
+        help("The sun slowly disappears beyond the horizon. Darkness covers the land, and you decide to set up camp for the night.");
+    }
+    public static void sleep() {
+        help ("You settle down and rest by the campfire. After a long night, you slowly drift into sleep. The night passes, and a new day begins.");
+    }
     public static void werewolfTransform() {
         try {
             typeHelper("You help the wounded merchant through the forest. With every step, he grows weaker until he suddenly collapses. Moments later, his body begins to change. Bones crack, fur grows, and a werewolf rises before you. It attacks!", Color.GREEN);
         } catch (Exception e) {}
+    }
+    public static void gameOver() {
+        help("Game Over");
+    }
+    public static void youWon() {
+        help("After many days of traveling, you finally see the walls of a distant village. The gates open as you approach, welcoming you inside. For the first time in a long while, you feel safe. Your journey has come to an end.");
     }
     public static void wolfAttack() {
         try {

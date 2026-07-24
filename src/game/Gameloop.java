@@ -1,6 +1,5 @@
 package game;
 
-import combat.Combat;
 import day.Day;
 import entity.*;
 
@@ -9,17 +8,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Gameloop {
-    private int day = 0;
     Scanner scanner = new Scanner(System.in);
 
     public void loop(Player player) {
-        while (player.isAlive() && Day.getDay() < 5) {
+        while (player.isAlive() && Day.getDay() <= Day.earlyEvents.size() + Day.lateEvents.size()) {
             Day day = new Day();
+            day.cicle(player);
         }
         if (!player.isAlive())
-            System.out.println("You dead bro");
+            Output.gameOver();
         else
-            System.out.println("You won!");
+            Output.youWon();
     }
     public void playTitle() {
         Output.playTitle();

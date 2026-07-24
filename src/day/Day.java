@@ -1,12 +1,16 @@
 package day;
 
 import entity.Player;
+import game.*;
 import output.Output;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Day {
     public static int day = 0;
+    public static List<Event> earlyEvents = List.of(new WolfAttack());
+    public static List<Event> lateEvents = List.of(new Bandits(), new InjuredTrader(), new AbandonedCamp());
     Scanner scanner = new Scanner(System.in);
 
     public Day() {
@@ -16,13 +20,17 @@ public class Day {
     public void cicle(Player player) {
         checkHunger(player);
         accessInventory(player);
-        // presented with event like fight or something
-        // player chooses to engage event or disengage
-        // play even / consequences of disengaging
-        // event over sun goes down access to items again chance to eat or heal -> sleep
-        // next day
+        if (day <= earlyEvents.size()) {
+            earlyEvents.get(day - 1).trigger(player, scanner);
+        }
+        else {
+            lateEvents.get(day - 1 - earlyEvents.size()).trigger(player, scanner);
+        }
+        Output.dayOver();
+        accessInventory(player);
+        Output.sleep();
+        day ++;
     }
-
     public static int getDay() {
         return day;
     }
@@ -51,8 +59,7 @@ public class Day {
         if (input == 1) {
             player.getInventory().showItems();
             chooseItem(player);
-        } else
-            return;
+        }
     }
 
     public void chooseItem(Player player) {
@@ -69,7 +76,6 @@ public class Day {
         }
         if (input <= player.getInventory().size() + 1) {
             player.getInventory().get(input - 1).use(player);
-        } else
-            return;
+        }
     }
 }
