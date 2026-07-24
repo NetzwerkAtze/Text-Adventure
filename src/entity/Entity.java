@@ -95,4 +95,7 @@ public class Entity {
     public void heal(int value) {
         hp += value;
     }
+    public void increaseAttack(int value) {
+        attack += value;
+    }
 }

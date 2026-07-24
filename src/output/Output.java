@@ -62,6 +62,21 @@ public class Output {
             typeHelper("You come across a wounded merchant lying by the side of the road. Blood seeps from a deep bite wound on his arm. He looks at you with pleading eyes, barely able to speak. Will you help him ?",Color.GREEN);
         } catch (Exception e) {}
     }
+    public static void abandonedCamp() {
+        try {
+            typeHelper("You stumble upon an abandoned campsite. In the center stands an old chest, untouched by time. As you approach, a skeletal mage rises from the ashes of a long-dead campfire, its wooden staff still clutched in its bony hands. Fight or leave?", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void abandonedLeave() {
+        try {
+            typeHelper("Deciding the risk isn't worth it, you leave the abandoned camp behind.", Color.GREEN);
+        } catch (Exception e) {}
+    }
+    public static void skeletWin(int dmg) {
+        try {
+            typeHelper("After an intense battle, the skeletal mage lets out one final scream before its body crumbles into dust. You open the chest. Inside you find an Enchanted Ring and some old cured meat in the campsite. You increase your attack by " + dmg + " and put the old cured meat to your bag.", Color.GREEN);
+        } catch (Exception e) {}
+    }
     public static void werewolfTransform() {
         try {
             typeHelper("You help the wounded merchant through the forest. With every step, he grows weaker until he suddenly collapses. Moments later, his body begins to change. Bones crack, fur grows, and a werewolf rises before you. It attacks!", Color.GREEN);
