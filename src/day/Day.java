@@ -19,14 +19,17 @@ public class Day {
     }
 
     public void cicle(Player player) {
+        if (day > 1) {
         checkHunger(player);
         accessInventory(player);
+        }
         if (day <= earlyEvents.size()) {
             earlyEvents.get(day - 1).trigger(player, scanner);
         }
         else {
             lateEvents.get(day - 1 - earlyEvents.size()).trigger(player, scanner);
         }
+        player.decreaseHunger();
         Output.dayOver();
         accessInventory(player);
         Output.sleep();
@@ -46,8 +49,10 @@ public class Day {
     public void accessInventory(Player player) {
         Output.accessInventory();
         Output.yesNo();
+        Output.clearInputBuffer(scanner);
         int input;
         while (true) {
+            scanner.reset();
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
                 if (input <= 2 && input > 0)
@@ -64,17 +69,20 @@ public class Day {
 
     public void chooseItem(Player player) {
         Output.chooseItem(player);
+        Output.clearInputBuffer(scanner);
         int input;
         while (true) {
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
-                if (input <= player.getInventory().size() + 1 && input > 0)
+                if (input == player.getInventory().size())
+                    return;
+                if (input < player.getInventory().size() && input > 0)
                     break;
             }
             Output.noValidValue();
             scanner.nextLine();
         }
-        if (input <= player.getInventory().size() + 1) {
+        if (input <= player.getInventory().size()) {
             player.getInventory().get(input - 1).use(player);
         }
     }

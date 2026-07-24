@@ -11,7 +11,8 @@ public class Combat {
     public static final int RESULT_FLED = 0;
     public static void fightHelper(Entity player, Entity enemy, int action){
             player.useAbility(action-1, enemy);
-            enemy.useAbility(0, player);
+            if (enemy.isAlive())
+                enemy.useAbility(0, player);
     }
     /*
 
@@ -25,6 +26,7 @@ public class Combat {
                 Output.displayAbility(index, player.getAbility(i).getName());
             }
             Output.displayAbility(player.fleeIndex(),"Flee");
+            Output.clearInputBuffer(scanner);
             int input;
             while (true) {
                 if (scanner.hasNextInt()) {

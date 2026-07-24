@@ -5,6 +5,7 @@ import items.Food;
 public class Player extends Entity {
     protected int hunger;
     protected int maxHunger = 5;
+    protected static int dailyCaloricConsume = 2;
 
     public Player(String name) {
         super(name, 100, 10);
@@ -29,5 +30,8 @@ public class Player extends Entity {
     }
     public void setHunger(int foodValue) {
         hunger = Math.min(hunger + foodValue, maxHunger);
+    }
+    public void decreaseHunger() {
+        hunger = Math.max(0, hunger - dailyCaloricConsume);
     }
 }

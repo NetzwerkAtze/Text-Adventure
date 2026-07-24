@@ -3,8 +3,6 @@ package entity;
 import ability.Ability;
 import ability.effect.Effect;
 import items.Inventory;
-import items.Item;
-
 import java.util.LinkedList;
 import java.util.List;
 

@@ -3,7 +3,7 @@ package ability;
 import entity.Entity;
 
 public class BasicAttack implements Ability {
-    private static final String NAME = "BasicAttack";
+    private static final String NAME = "Attack";
 
     @Override
     public void use(Entity user, Entity target) {

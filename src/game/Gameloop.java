@@ -41,6 +41,7 @@ public class Gameloop {
     }
     public CharacterClass chooseClass() throws InputMismatchException {
         Output.chooseClass();
+        Output.clearInputBuffer(scanner);
         int input;
         while (true) {
             if (scanner.hasNextInt()) {

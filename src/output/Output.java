@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Scanner;
 
 public class Output {
     public static final int OPTION_ONE = 1;
     public static final int OPTION_TWO = 2;
     public static void receiveItem(String name) {
         try {
-            typeHelper("You receive  " + name + " and add it to your inventory.", Color.GREEN);
+            typeHelper("You receive  " + name + ".", Color.GREEN);
         } catch (Exception e) {}
 
     }
@@ -44,7 +45,7 @@ public class Output {
     }
     public static void chooseAction() {
         try {
-            typeHelper("Choose your next action: ", Color.GREEN);
+            typeHelper("Choose your action: ", Color.GREEN);
         } catch (Exception e) {}
     }
     public static void displayAbility(int number, String name) {
@@ -190,21 +191,14 @@ public class Output {
     }
     public static void playIntro() {
         try {
-            Output.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.BLUE);
+            Output.typeText(Files.readAllLines(Paths.get("lore/intro.txt")), Color.GREEN);
         } catch (Exception e) {}
     }
     public static void chooseClass() {
-        try {
-            System.out.println("Choose your Class: ");
-            Thread.sleep(500);
-            System.out.println();
-            System.out.println("    (1) " + CharacterClassType.WARRIOR);
-            Thread.sleep(500);
-            System.out.println("    (2) " + CharacterClassType.MAGE);
-            Thread.sleep(500);
-            System.out.println("    (3) " + CharacterClassType.RANGER);
-            System.out.println();
-        } catch (Exception e) {}
+        help("Choose your Class: ");
+        help("    (1) " + CharacterClassType.WARRIOR);
+        help("    (2) " + CharacterClassType.MAGE);
+        help("    (3) " + CharacterClassType.RANGER);
     }
     public static void typeHelper(String text, Color color) throws InterruptedException {
         String chosenColor = "";
@@ -236,5 +230,12 @@ public class Output {
             typeHelper(line, color);
             Thread.sleep(500);
         }
+    }
+    public static void clearInputBuffer(Scanner scanner) {
+        try {
+            while (System.in.available() > 0) {
+                scanner.nextLine();
+            }
+        } catch (IOException e) {}
     }
 }
